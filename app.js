@@ -1,22 +1,26 @@
-const fetch = require('node-fetch');
-const btoa = require('btoa');;
 require('dotenv').config();
 
-fetch('https://ucf1-fap0609-fa-ext.oracledemos.com/crmRestApi/resources/latest/leads/100000005482357', {
-    headers:{
-        'Content-Type': 'application/json',
-        'Authorization': 'Basic ' + btoa('john.dunbar' + ":" + 'Rhi86498')
-	}
-})
-.then(function(response){
-    if(response.status === 401){
-        console.log("AUTHENTICATION ERROR");
-    }
-    return response.json();
-})
-.then(function(data){
-    console.log(data);
-})
-.catch(function(error){
-    console.error(error);
-})
+const express = require('express');
+const bodyParser = require('body-parser');
+const serveStatic = require('serve-static');
+
+//crm controller
+const crmController = require('./public/controllers/crmController');
+const app = express();
+
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }));
+ 
+// parse application/json
+app.use(bodyParser.json());
+
+// User-Controller routing
+app.use('/crm', crmController);
+
+// Get - Middleware Serve up public/views folder
+app.use('/', serveStatic('./public/views/', {'index': ['index.html', 'default.htm']}));
+
+app.listen(process.env.LOCAL, function(){
+    console.log(`Server started at port ${process.env.LOCAL}`); 
+});
+
