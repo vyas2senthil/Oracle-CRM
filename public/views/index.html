@@ -18,10 +18,10 @@
                 <fieldset>
                   <legend>Send request to your Oracle CRM</legend>
                   <div class="form-group">
-                    <label for="endpointUrl">Email address</label>
+                    <label for="endpointUrl">Oracle CRM Endpoint URL</label>
                     <div class="row">
                         <div class="col-md-10">
-                            <input type="url" class="form-control" id="endpointUrl" aria-describedby="endpointUrlHelp" placeholder="Sales/Engagement Cloud instance URL" value="">
+                            <input type="url" class="form-control" id="endpointUrl" aria-describedby="endpointUrlHelp" placeholder="Sales/Engagement Cloud instance URL" value="" required>
                         </div>
                         <div class="col-md-2">
                             <button type="submit" class="btn btn-success" id="btnSaveUrl">Save</button>
@@ -33,23 +33,88 @@
                     <label for="endpointPassword">Password</label>
                       <div class="row">
                           <div class="col-md-10">
-                                <input type="password" class="form-control" id="endpointPassword" aria-describedby="endpointPassowordHelp" placeholder="Password">
+                                <input type="password" class="form-control" id="endpointPassword" aria-describedby="endpointPassowordHelp" placeholder="Password" value="" required>
                           </div>
                           <div class="col-md-2">
                                 <button type="submit" class="btn btn-success" id="btnSavePassword">Save</button>
                           </div>
                       </div>
-                    <small id="endpointPassowordHelp" class="form-text text-muted">YoEndpoint of your Sales/Engagement Cloud instance password </small>
+                    <small id="endpointPassowordHelp" class="form-text text-muted">Endpoint of your Sales/Engagement Cloud instance password </small>
                   </div>
                   
+                  <div class="form-group">
+                    <label for="actionSelect">Actions</label>
+                    <select class="form-control" id="actionSelect">
+                      <option>Create Lead</option>
+                      <option>Retrieve Lead</option>
+                    </select>
+                  </div>
+
+
+                  <div class="form-group" id="lead">
+                        <input type="number" class="form-control" id="leadNumber" placeholder="Insert lead number" value="" required>
+                  </div>
+
                   <button type="submit" class="btn btn-primary" id="btnFormSubmit">Submit</button>
+                  <button type="submit" class="btn btn-danger" id="btnFormClear">Clear</button>                  
                 </fieldset>
               </form>
 
 
         </div>
+
+        <!-- Spinner -->
+        <div>
+            <img src="spinner.gif" alt="spinner" class="spinner">
+        </div>
+
+        <!-- Results -->
+        <div>
+            RESULTS
+        </div>
     </div>
 
+
+    <!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <!-- Customer Logo Image URL -->
+              <img src="./file/general/logo_supremo_business.png" alt="Supremo">
+            </div>
+            <div class="modal-body">
+      
+              <div class="form-group" id="form">
+                <label for="customerText">Ticket Subject</label>
+                <input type="text" class="form-control" id="customerText" value="" placeholder="Write the subject of your service request">
+              </div>
+              
+              <div id="resultMessage">
+                  <label>Oracle Service Cloud Response:</label>
+                  <p>Your new request has been opened with id <span class="reqId"></span></p>
+                  <p>Reference number: <span class="reqRefNum"></span></p>
+              </div>
+              
+              <div id="errorMessage">
+                  <label>Oracle Service Cloud Response:</label>
+                  <p>There was an error: <span class="error"></span></p>
+              </div>
+      
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-success" id="sendMessage" data-bind="onRender: clickSendMessageEvent">Send</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+
+    <script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
     <script src="index.js"></script>
 </body>
 </html>
