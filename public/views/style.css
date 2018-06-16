@@ -7,3 +7,11 @@ body {
     margin: 0 auto;
     max-width: 50%;
 }
+
+.title {
+    font-size: 20px;
+}
+
+.callResult {
+    color: #DF691A;
+}

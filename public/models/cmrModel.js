@@ -7,13 +7,13 @@ class Crm {
 
     }
 
-    static getCrmLeads(action, endpoint, password, lead, req, res){
+    static getCrmLeads(action, endpoint, password, lead, leadRank, account, customer, country, address, city, postalCode, description, customerEmail, req, res){
 
         var url = "";
 
         if(action === "Create Lead"){
 
-            url = endpoint + "/crmRestApi/resources/latest/leads/100000005482357";
+            url = endpoint + "/crmRestApi/resources/latest/leads";
 
             fetch(url, {
                 method: "POST",
@@ -23,14 +23,20 @@ class Crm {
                 },
                 // to be completed
                 body: JSON.stringify({
-                    primaryContact: {id: userId},
-                    subject: customerText
+                    Rank: leadRank,
+                    CustomerPartyName: account,
+                    Description: description,
+                    PrimaryContactPartyName: customer,
+                    PrimaryContactCountry: country,
+                    PrimaryContactAddress1: address,
+                    PrimaryContactCity: city,
+                    PrimaryContactPostalCode: postalCode,
+                    PrimaryContactEmailAddress: customerEmail
                 }),
             })
             .then(function(response){
 
                 if(response.status === 401){
-                    console.log("AUTHENTICATION ERROR");
                     res.status(401).send("Authentication Error");
                 } else {
                     return response.json();
@@ -38,14 +44,15 @@ class Crm {
                 
             })
             .then(function(data){
-                console.log(data);
                 res.status(201).send(data);
             })
             .catch(function(error){
                 res.status(501).send(error);
             })
 
-        } else if(action === "Retrieve Lead"){
+        } 
+        // Retrieve a Lead call
+        else if(action === "Retrieve Lead"){
             
             url = endpoint + "/crmRestApi/resources/latest/leads/" + lead;
 
@@ -58,7 +65,6 @@ class Crm {
             .then(function(response){
 
                 if(response.status === 401){
-                    console.log("AUTHENTICATION ERROR");
                     res.status(401).send("Authentication Error");
                 } else {
                     return response.json();
@@ -66,7 +72,6 @@ class Crm {
                 
             })
             .then(function(data){
-                console.log(data);
                 res.status(201).send(data);
             })
             .catch(function(error){

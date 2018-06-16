@@ -54,9 +54,7 @@
                   <div class="form-group" id="lead">
                         <input type="number" class="form-control" id="leadNumber" placeholder="Insert lead number" value="" required>
                   </div>
-
-                  <button type="submit" class="btn btn-primary" id="btnFormSubmit">Submit</button>
-                  <button type="submit" class="btn btn-danger" id="btnFormClear">Clear</button>                  
+            
                 </fieldset>
               </form>
 
@@ -68,48 +66,130 @@
             <img src="spinner.gif" alt="spinner" class="spinner">
         </div>
 
-        <!-- Results -->
-        <div>
-            RESULTS
+        <!-- Create a Lead -->
+        <div class="divCreateLeads">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="actionLeadRank">Lead Rank</label>
+                        <select class="form-control" id="actionLeadRank">
+                            <option>COLD</option>
+                            <option>WARM</option>
+                            <option>HOT</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="account">Account</label>
+                        <input type="text" class="form-control" id="account"  placeholder="Account name" value="" required>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="customer">Customer fullname</label>
+                        <input type="text" class="form-control" id="customer"  placeholder="Customer fullname" value="" required>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="actionLeadCountry">Country</label>
+                        <select class="form-control" id="actionLeadCountry">
+                            <option>IT</option>
+                            <option>ES</option>
+                            <option>FR</option>
+                            <option>UK</option>
+                            <option>US</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="address">Address</label>
+                        <input type="text" class="form-control" id="address"  placeholder="Address" value="" required>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="city">City</label>
+                        <input type="text" class="form-control" id="city"  placeholder="City" value="" required>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="postalCode">Postal code</label>
+                        <input type="number" class="form-control" id="postalCode"  placeholder="1010" value="" required>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <input type="text" class="form-control" id="description"  placeholder="Description" value="" required>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="customerEmail">Email address</label>
+                        <input type="email" class="form-control" id="customerEmail"  placeholder="customer@domain.com" value="" required>
+                    </div>
+                </div>
+            </div>
+        </div>  
+        <!-- End of Create a Lead -->
+
+        <!-- Submit-Clean form -->
+        <div class="buttons">
+            <button type="submit" class="btn btn-primary" id="btnFormSubmit">Submit</button>
+            <button type="submit" class="btn btn-danger" id="btnFormClear">Clear</button>
         </div>
+        <!-- END of Submit-Clean form -->      
+        <hr class="my-4">
+        <br><br><br>
+            <!-- Results -->
+            <div class="results">
+                <legend>Results</legend>
+                <hr class="my-4">
+            <div class="row">
+                <div class="col-md-4">
+                    <p class="title">Lead Name</p>
+                    <p class="callResult" id="divLeadName">
+    
+                    </p>
+                </div>
+                <div class="col-md-4">
+                    <p class="title">Lead Number</p>
+                    <p class="callResult" id="divLeadNumber">
+                        
+                    </p>
+                </div>
+                <div class="col-md-4">
+                    <p class="title">Owner</p>
+                    <p class="callResult" id="divLeadOwner">
+                        
+                    </p>
+                </div>
+                <div class="col-md-4">
+                    <p class="title">Status</p>
+                    <p class="callResult" id="divLeadStatus">
+                        
+                    </p>
+                </div>
+                <div class="col-md-4">
+                    <p class="title">Rank</p>
+                    <p class="callResult" id="divLeadRankResult">
+                        
+                    </p>
+                </div>
+                <div class="col-md-4">
+                    <p class="title">Lead ID</p>
+                    <p class="callResult" id="divLeadID">
+                        
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!-- END OF Results -->
     </div>
-
-
-    <!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <!-- Customer Logo Image URL -->
-              <img src="./file/general/logo_supremo_business.png" alt="Supremo">
-            </div>
-            <div class="modal-body">
-      
-              <div class="form-group" id="form">
-                <label for="customerText">Ticket Subject</label>
-                <input type="text" class="form-control" id="customerText" value="" placeholder="Write the subject of your service request">
-              </div>
-              
-              <div id="resultMessage">
-                  <label>Oracle Service Cloud Response:</label>
-                  <p>Your new request has been opened with id <span class="reqId"></span></p>
-                  <p>Reference number: <span class="reqRefNum"></span></p>
-              </div>
-              
-              <div id="errorMessage">
-                  <label>Oracle Service Cloud Response:</label>
-                  <p>There was an error: <span class="error"></span></p>
-              </div>
-      
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-success" id="sendMessage" data-bind="onRender: clickSendMessageEvent">Send</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      
 
     <script
   src="https://code.jquery.com/jquery-3.3.1.min.js"
